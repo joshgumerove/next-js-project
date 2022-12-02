@@ -30,6 +30,22 @@ function HomePage(props) {
   return <MeetupList meetups={props.meetups} />;
 }
 
+// below is an alternative to getStaticProps
+
+// export async function getServerSideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
+
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// }
+// the above is slower than getStaticProps -- should only use if need access to request object or have
+// data that changes multiple times a second
+// getServerSideProps also only runs on the server
+
 export async function getStaticProps() {
   return {
     props: {
