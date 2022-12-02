@@ -1,3 +1,5 @@
+import React from "react";
+
 import MeetupList from "../components/meetups/MeetupList";
 
 const DUMMY_MEETUPS = [
@@ -19,8 +21,24 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-function HomePage() {
-  return <MeetupList meetups={DUMMY_MEETUPS} />;
+function HomePage(props) {
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
+  // useEffect(() => {
+  //   setLoadedMeetups(DUMMY_MEETUPS);
+  // }, []);
+
+  return <MeetupList meetups={props.meetups} />;
 }
 
+export async function getStaticProps() {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+    revalidate: 10, // number of seconds NextJS waits till NextJS will re-render the page
+  };
+}
+// gets called before the component function
+// code written in getStaticProps will not be accessed on client side (can access a database)
+// need to return an object from the function
 export default HomePage;
