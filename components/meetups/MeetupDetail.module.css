@@ -1,0 +1,9 @@
+.detail img {
+  width: 100%;
+}
+
+.detail {
+  text-align: center;
+}
+
+/* adding .module allows for style scoping */
